@@ -3,216 +3,284 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Registration System</title>
+    <title>Student Marks Calculator</title>
+    <!-- Custom Stylesheet -->
     <link rel="stylesheet" href="style.css">
-    <!-- Google Fonts for clean, modern typography -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <!-- Notification Toast Message -->
-    <div id="toast" class="toast"></div>
+    <!-- Main Container -->
+    <div class="app-container">
 
-    <!-- Navigation / Header -->
-    <header class="navbar">
-        <div class="nav-container">
-            <div class="logo">
-                <span class="logo-icon">🎓</span>
-                <span class="logo-text">EduPortal</span>
-            </div>
-            <a href="#register-section" class="btn btn-secondary nav-btn">Register Student</a>
-        </div>
-    </header>
-
-    <!-- Hero / Welcome Section -->
-    <section class="hero-section">
-        <div class="container hero-content">
-            <span class="badge">College Hackathon Edition</span>
-            <h1 class="hero-title">Student Registration System</h1>
-            <p class="hero-description">
-                A simple, intuitive, and responsive portal designed to register, manage, and view student records seamlessly.
+        <!-- Header Section -->
+        <header class="app-header">
+            <div class="header-icon">📊</div>
+            <h1 class="header-title">Student Marks Calculator</h1>
+            <p class="header-subtitle">
+                Enter student details and marks to calculate total, percentage, grade, and pass/fail status.
             </p>
-            <div class="hero-actions">
-                <a href="#register-section" class="btn btn-primary">➕ Register Student</a>
-                <a href="#records-section" class="btn btn-outline">📋 View Student List</a>
-                <button id="load-sample-btn" class="btn btn-ghost" type="button">⚡ Load Demo Data</button>
-            </div>
-        </div>
-    </section>
+        </header>
 
-    <!-- Main Content Area -->
-    <main class="container main-content">
+        <!-- Two-Column Layout Grid -->
+        <main class="main-grid">
 
-        <!-- Statistics Cards -->
-        <section class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-icon bg-indigo">👥</div>
-                <div>
-                    <h3 id="total-count">0</h3>
-                    <p>Total Registered</p>
+            <!-- LEFT COLUMN: Input Form Card -->
+            <section class="card form-card">
+                <div class="card-header">
+                    <h2>📝 Student Information & Marks</h2>
+                    <p class="section-desc">Each subject is evaluated out of 100 marks (Passing marks: 35).</p>
                 </div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-icon bg-green">📚</div>
-                <div>
-                    <h3 id="courses-count">0</h3>
-                    <p>Active Courses</p>
-                </div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-icon bg-amber">⚡</div>
-                <div>
-                    <h3>Local Storage</h3>
-                    <p>Data Persistence</p>
-                </div>
-            </div>
-        </section>
 
-        <!-- Student Registration Form Card -->
-        <section id="register-section" class="card form-card">
-            <div class="card-header">
-                <div>
-                    <h2 id="form-heading">Register New Student</h2>
-                    <p class="card-subtitle">Fill in the details below to add a student to the directory.</p>
-                </div>
-                <span id="editing-badge" class="editing-indicator" style="display: none;">✏️ Editing Mode</span>
-            </div>
-
-            <form id="student-form" novalidate>
-                <!-- Hidden input to track if we are editing an existing student -->
-                <input type="hidden" id="edit-id" value="">
-
-                <div class="form-grid">
-                    <!-- Student Name -->
+                <form id="marks-form" novalidate>
+                    <!-- Student Full Name -->
                     <div class="form-group">
-                        <label for="student-name">Full Name <span class="required">*</span></label>
-                        <input type="text" id="student-name" placeholder="e.g. Alex Johnson" autocomplete="off">
-                        <small class="error-msg" id="name-error"></small>
+                        <label for="student-name">
+                            Student Name <span class="required">*</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            id="student-name" 
+                            name="studentName"
+                            placeholder="e.g. Alex Johnson"
+                            autocomplete="off"
+                        >
+                        <span class="error-text" id="name-error"></span>
                     </div>
 
-                    <!-- Student ID -->
-                    <div class="form-group">
-                        <label for="student-id">Student ID <span class="required">*</span></label>
-                        <input type="text" id="student-id" placeholder="e.g. CS202601" autocomplete="off">
-                        <small class="error-msg" id="id-error"></small>
+                    <!-- Subject Marks Grid -->
+                    <div class="subjects-grid">
+
+                        <!-- Subject 1: Mathematics -->
+                        <div class="form-group">
+                            <label for="maths">
+                                Mathematics <span class="required">*</span>
+                            </label>
+                            <input 
+                                type="number" 
+                                id="maths" 
+                                name="maths"
+                                min="0" 
+                                max="100" 
+                                step="any"
+                                placeholder="0 - 100"
+                            >
+                            <span class="error-text" id="maths-error"></span>
+                        </div>
+
+                        <!-- Subject 2: English -->
+                        <div class="form-group">
+                            <label for="english">
+                                English <span class="required">*</span>
+                            </label>
+                            <input 
+                                type="number" 
+                                id="english" 
+                                name="english"
+                                min="0" 
+                                max="100" 
+                                step="any"
+                                placeholder="0 - 100"
+                            >
+                            <span class="error-text" id="english-error"></span>
+                        </div>
+
+                        <!-- Subject 3: Computer Science -->
+                        <div class="form-group">
+                            <label for="cs">
+                                Computer Science <span class="required">*</span>
+                            </label>
+                            <input 
+                                type="number" 
+                                id="cs" 
+                                name="cs"
+                                min="0" 
+                                max="100" 
+                                step="any"
+                                placeholder="0 - 100"
+                            >
+                            <span class="error-text" id="cs-error"></span>
+                        </div>
+
+                        <!-- Subject 4: Physics -->
+                        <div class="form-group">
+                            <label for="physics">
+                                Physics <span class="required">*</span>
+                            </label>
+                            <input 
+                                type="number" 
+                                id="physics" 
+                                name="physics"
+                                min="0" 
+                                max="100" 
+                                step="any"
+                                placeholder="0 - 100"
+                            >
+                            <span class="error-text" id="physics-error"></span>
+                        </div>
+
+                        <!-- Subject 5: Chemistry -->
+                        <div class="form-group">
+                            <label for="chemistry">
+                                Chemistry <span class="required">*</span>
+                            </label>
+                            <input 
+                                type="number" 
+                                id="chemistry" 
+                                name="chemistry"
+                                min="0" 
+                                max="100" 
+                                step="any"
+                                placeholder="0 - 100"
+                            >
+                            <span class="error-text" id="chemistry-error"></span>
+                        </div>
+
                     </div>
 
-                    <!-- Email Address -->
-                    <div class="form-group">
-                        <label for="student-email">Email Address <span class="required">*</span></label>
-                        <input type="email" id="student-email" placeholder="e.g. alex.j@example.com" autocomplete="off">
-                        <small class="error-msg" id="email-error"></small>
+                    <!-- Action Buttons -->
+                    <div class="button-group">
+                        <button type="submit" id="btn-calculate" class="btn btn-primary">
+                            <span class="btn-icon">🧮</span> Calculate Result
+                        </button>
+                        <button type="button" id="btn-clear" class="btn btn-secondary">
+                            <span class="btn-icon">🔄</span> Clear All
+                        </button>
                     </div>
 
-                    <!-- Phone Number -->
-                    <div class="form-group">
-                        <label for="student-phone">Phone Number <span class="required">*</span></label>
-                        <input type="tel" id="student-phone" placeholder="e.g. 9876543210 (10 digits)" maxlength="10" autocomplete="off">
-                        <small class="error-msg" id="phone-error"></small>
+                    <!-- Quick Demo Presets (Ideal for Classroom Demos) -->
+                    <div class="demo-actions">
+                        <span class="demo-label">Class Demo Presets:</span>
+                        <button type="button" id="btn-demo-pass" class="btn-chip btn-chip-pass" title="Load sample passing marks">
+                            ✨ Sample (PASS - 88%)
+                        </button>
+                        <button type="button" id="btn-demo-fail" class="btn-chip btn-chip-fail" title="Load sample failing marks (< 35 in Physics)">
+                            ⚠️ Sample (FAIL - Sub &lt; 35)
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- RIGHT COLUMN: Results & Grading Scheme Cards -->
+            <section class="results-column">
+
+                <!-- Result Card -->
+                <div class="card result-card" id="result-card">
+                    <!-- Placeholder State (Shown before calculation) -->
+                    <div id="result-placeholder" class="placeholder-content">
+                        <div class="placeholder-icon">📋</div>
+                        <h3>No Results Yet</h3>
+                        <p>Fill in the student details and subject marks, then click <strong>Calculate Result</strong> to generate the marksheet.</p>
                     </div>
 
-                    <!-- Course Dropdown -->
-                    <div class="form-group">
-                        <label for="student-course">Course / Department <span class="required">*</span></label>
-                        <select id="student-course">
-                            <option value="">-- Select Course --</option>
-                            <option value="Computer Science & Engineering">Computer Science & Engineering</option>
-                            <option value="Information Technology">Information Technology</option>
-                            <option value="Electronics & Communication">Electronics & Communication</option>
-                            <option value="Mechanical Engineering">Mechanical Engineering</option>
-                            <option value="Civil Engineering">Civil Engineering</option>
-                            <option value="Business Administration">Business Administration</option>
-                        </select>
-                        <small class="error-msg" id="course-error"></small>
-                    </div>
+                    <!-- Computed Report Card (Hidden until calculation) -->
+                    <div id="report-card" class="report-content" style="display: none;">
+                        <div class="report-header">
+                            <div>
+                                <span class="report-eyebrow">Class Marksheet</span>
+                                <h2 id="res-student-name" class="report-student-name">Student Name</h2>
+                            </div>
+                            <div id="res-status-badge" class="badge badge-pass">PASS</div>
+                        </div>
 
-                    <!-- Year of Study Dropdown -->
-                    <div class="form-group">
-                        <label for="student-year">Year of Study <span class="required">*</span></label>
-                        <select id="student-year">
-                            <option value="">-- Select Year --</option>
-                            <option value="1st Year">1st Year</option>
-                            <option value="2nd Year">2nd Year</option>
-                            <option value="3rd Year">3rd Year</option>
-                            <option value="4th Year">4th Year</option>
-                        </select>
-                        <small class="error-msg" id="year-error"></small>
+                        <!-- Stat Boxes Grid -->
+                        <div class="stats-grid">
+                            <div class="stat-box">
+                                <span class="stat-label">Total Marks</span>
+                                <div class="stat-value">
+                                    <span id="res-total">0</span><span class="stat-max">/ 500</span>
+                                </div>
+                            </div>
+
+                            <div class="stat-box">
+                                <span class="stat-label">Percentage</span>
+                                <div class="stat-value" id="res-percentage">0.00%</div>
+                            </div>
+
+                            <div class="stat-box">
+                                <span class="stat-label">Grade</span>
+                                <div class="stat-value stat-grade" id="res-grade">-</div>
+                            </div>
+                        </div>
+
+                        <!-- Status Alert Message -->
+                        <div id="res-status-banner" class="status-banner banner-pass">
+                            <span id="res-banner-icon" class="banner-icon">✅</span>
+                            <span id="res-banner-text">Congratulations! Student has passed all subjects.</span>
+                        </div>
+
+                        <!-- Subject-wise Marks Table -->
+                        <div class="table-container">
+                            <table class="marks-table">
+                                <thead>
+                                    <tr>
+                                        <th>Subject</th>
+                                        <th>Max Marks</th>
+                                        <th>Min Marks</th>
+                                        <th>Marks Scored</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="res-table-body">
+                                    <!-- Rows populated dynamically by JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Form Buttons -->
-                <div class="form-actions">
-                    <button type="submit" id="submit-btn" class="btn btn-primary">
-                        <span id="submit-btn-text">Submit Registration</span>
-                    </button>
-                    <button type="button" id="cancel-btn" class="btn btn-outline" style="display: none;">
-                        Cancel Edit
-                    </button>
-                    <button type="reset" id="reset-btn" class="btn btn-ghost">
-                        Clear Fields
-                    </button>
+                <!-- Grading Reference Guide Card -->
+                <div class="card guide-card">
+                    <div class="card-header guide-header">
+                        <h3>📖 Grading Scale & Passing Rule</h3>
+                    </div>
+                    <ul class="grading-list">
+                        <li>
+                            <span class="grade-pill grade-pill-aplus">A+</span>
+                            <span class="grade-range">90% – 100%</span>
+                            <span class="grade-desc">Outstanding</span>
+                        </li>
+                        <li>
+                            <span class="grade-pill grade-pill-a">A</span>
+                            <span class="grade-range">80% – 89%</span>
+                            <span class="grade-desc">Excellent</span>
+                        </li>
+                        <li>
+                            <span class="grade-pill grade-pill-b">B</span>
+                            <span class="grade-range">70% – 79%</span>
+                            <span class="grade-desc">Very Good</span>
+                        </li>
+                        <li>
+                            <span class="grade-pill grade-pill-c">C</span>
+                            <span class="grade-range">60% – 69%</span>
+                            <span class="grade-desc">Good</span>
+                        </li>
+                        <li>
+                            <span class="grade-pill grade-pill-d">D</span>
+                            <span class="grade-range">35% – 59%</span>
+                            <span class="grade-desc">Satisfactory</span>
+                        </li>
+                        <li>
+                            <span class="grade-pill grade-pill-f">F</span>
+                            <span class="grade-range">Below 35%</span>
+                            <span class="grade-desc">Fail</span>
+                        </li>
+                    </ul>
+                    <div class="pass-rule-note">
+                        <strong>📌 Passing Rule:</strong> A student is awarded <strong>PASS</strong> only if every individual subject has at least <strong>35 marks</strong>. Failing any single subject marks the overall status as <strong>FAIL</strong> with Grade <strong>F</strong>.
+                    </div>
                 </div>
-            </form>
-        </section>
 
-        <!-- Student List / Table Section -->
-        <section id="records-section" class="card table-card">
-            <div class="table-header">
-                <div class="table-title">
-                    <h2>Registered Students</h2>
-                    <p class="card-subtitle">Search, view, update, and manage student records.</p>
-                </div>
+            </section>
+        </main>
 
-                <!-- Search and Filter Bar -->
-                <div class="search-box">
-                    <span class="search-icon">🔍</span>
-                    <input type="text" id="search-input" placeholder="Search by Student Name or ID...">
-                    <button id="clear-search-btn" class="clear-search-btn" title="Clear search" type="button" style="display: none;">✕</button>
-                </div>
-            </div>
+        <!-- Footer -->
+        <footer class="app-footer">
+            <p>Designed for Classroom Demonstration • Pure HTML5, CSS3, &amp; Vanilla JavaScript</p>
+        </footer>
 
-            <!-- Table Container (Horizontal Scroll on Mobile) -->
-            <div class="table-responsive">
-                <table class="students-table">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Student ID</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Phone</th>
-                            <th>Course</th>
-                            <th>Year</th>
-                            <th class="text-center">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="students-table-body">
-                        <!-- Student rows dynamically injected via JavaScript -->
-                    </tbody>
-                </table>
+    </div>
 
-                <!-- Empty State Message -->
-                <div id="empty-state" class="empty-state">
-                    <div class="empty-icon">📂</div>
-                    <h3 id="empty-title">No Students Registered Yet</h3>
-                    <p id="empty-description">Use the registration form above or click "Load Demo Data" to get started.</p>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container footer-content">
-            <p>© 2026 Student Registration System | Built for College Hackathon</p>
-            <p class="footer-subtext">Pure HTML5 • CSS3 • Vanilla JavaScript</p>
-        </div>
-    </footer>
-
-    <!-- JavaScript File -->
+    <!-- Custom Script -->
     <script src="script.js"></script>
 </body>
 </html>

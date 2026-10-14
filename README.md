@@ -1,6 +1,6 @@
-# 🎓 Student Registration System
+# 📊 Student Marks Calculator
 
-A simple, attractive, and responsive **Student Registration System** built for college hackathons using pure **HTML5, CSS3, and Vanilla JavaScript**.
+A clean, modern, and beginner-friendly **Student Marks Calculator** designed for classroom demonstrations, built using pure **HTML5, CSS3, and Vanilla JavaScript**.
 
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)
@@ -8,28 +8,32 @@ A simple, attractive, and responsive **Student Registration System** built for c
 
 ---
 
-## 🌟 Key Features
+## 🌟 Features
 
-- **Responsive Design**: Looks clean and functions smoothly on desktops, tablets, and smartphones.
-- **Client-Side Form Validation**: Validates full name, email format, 10-digit phone number, unique student ID, course, and year.
-- **Full CRUD Operations**:
-  - **Create**: Add new students with instant feedback.
-  - **Read**: View registered students in a formatted, organized table.
-  - **Update**: Edit existing student details seamlessly.
-  - **Delete**: Remove student records with confirmation prompts.
-- **Instant Search**: Search through students by Name, ID, or Course in real time.
-- **Data Persistence**: Uses browser `localStorage` so records stay saved across page reloads.
-- **One-Click Demo Data**: Quickly populate realistic student profiles for testing or hackathon demonstrations.
-- **Real-time Statistics**: Shows live count of registered students and active courses.
+- **5 Subject Evaluation**: Mathematics, English, Computer Science, Physics, Chemistry (evaluated out of 100).
+- **Accurate Scoring**: Calculates total score out of 500 and percentage formatted to 2 decimal places.
+- **Strict Passing Rule**: Student receives **PASS** only if **all 5 subjects** score $\ge 35$; otherwise marked **FAIL**.
+- **Grading Scale**:
+  - **A+**: 90% – 100%
+  - **A**: 80% – 89.99%
+  - **B**: 70% – 79.99%
+  - **C**: 60% – 69.99%
+  - **D**: 35% – 59.99%
+  - **F**: Below 35% or failed in any subject
+- **Input Validation**: Validates empty fields, non-numeric values, and numbers outside the 0–100 range with inline feedback.
+- **Classroom Demo Presets**: Includes one-click test cases for fast, live classroom presentations.
+- **Clear All**: Smoothly resets all inputs, validation messages, and generated results.
+- **100% Offline & Zero Dependencies**: Runs locally in any browser without installations or backend servers.
 
 ---
 
 ## 📂 Project Structure
 
 ```text
-├── index.html     # Semantic HTML5 layout and structure
-├── style.css      # Custom styling, CSS variables, and responsive design
-├── script.js      # Form validation, CRUD logic, search, and localStorage
+student-calculator/
+├── index.html     # Semantic HTML5 layout and report card markup
+├── style.css      # Modern light-theme styling, rounded cards & responsive CSS
+├── script.js      # Form validation, calculation logic & DOM manipulation
 └── README.md      # Project overview and documentation
 ```
 
@@ -39,22 +43,16 @@ A simple, attractive, and responsive **Student Registration System** built for c
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/pavanboddeti073-bit/student-profile-.git
+   git clone https://github.com/pavanboddeti073-bit/student-calculator.git
    ```
 2. Open the project folder:
    ```bash
-   cd student-profile-
+   cd student-calculator
    ```
-3. Open `index.html` in your favorite web browser (e.g., Chrome, Edge, Safari, Firefox).
-
----
-
-## 🌐 Deployment
-
-Deployable instantly to [Vercel](https://vercel.com) or [GitHub Pages](https://pages.github.com/).
+3. Open `index.html` in any web browser (Chrome, Edge, Firefox, Safari).
 
 ---
 
 ## 📄 License
 
-This project is open-source and free to use for educational and hackathon purposes.
+This project is open-source and free to use for educational and classroom demonstration purposes.
