@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration System</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts for clean, modern typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Notification Toast Message -->
+    <div id="toast" class="toast"></div>
+
+    <!-- Navigation / Header -->
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-icon">🎓</span>
+                <span class="logo-text">EduPortal</span>
+            </div>
+            <a href="#register-section" class="btn btn-secondary nav-btn">Register Student</a>
+        </div>
+    </header>
+
+    <!-- Hero / Welcome Section -->
+    <section class="hero-section">
+        <div class="container hero-content">
+            <span class="badge">College Hackathon Edition</span>
+            <h1 class="hero-title">Student Registration System</h1>
+            <p class="hero-description">
+                A simple, intuitive, and responsive portal designed to register, manage, and view student records seamlessly.
+            </p>
+            <div class="hero-actions">
+                <a href="#register-section" class="btn btn-primary">➕ Register Student</a>
+                <a href="#records-section" class="btn btn-outline">📋 View Student List</a>
+                <button id="load-sample-btn" class="btn btn-ghost" type="button">⚡ Load Demo Data</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content Area -->
+    <main class="container main-content">
+
+        <!-- Statistics Cards -->
+        <section class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon bg-indigo">👥</div>
+                <div>
+                    <h3 id="total-count">0</h3>
+                    <p>Total Registered</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon bg-green">📚</div>
+                <div>
+                    <h3 id="courses-count">0</h3>
+                    <p>Active Courses</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon bg-amber">⚡</div>
+                <div>
+                    <h3>Local Storage</h3>
+                    <p>Data Persistence</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Student Registration Form Card -->
+        <section id="register-section" class="card form-card">
+            <div class="card-header">
+                <div>
+                    <h2 id="form-heading">Register New Student</h2>
+                    <p class="card-subtitle">Fill in the details below to add a student to the directory.</p>
+                </div>
+                <span id="editing-badge" class="editing-indicator" style="display: none;">✏️ Editing Mode</span>
+            </div>
+
+            <form id="student-form" novalidate>
+                <!-- Hidden input to track if we are editing an existing student -->
+                <input type="hidden" id="edit-id" value="">
+
+                <div class="form-grid">
+                    <!-- Student Name -->
+                    <div class="form-group">
+                        <label for="student-name">Full Name <span class="required">*</span></label>
+                        <input type="text" id="student-name" placeholder="e.g. Alex Johnson" autocomplete="off">
+                        <small class="error-msg" id="name-error"></small>
+                    </div>
+
+                    <!-- Student ID -->
+                    <div class="form-group">
+                        <label for="student-id">Student ID <span class="required">*</span></label>
+                        <input type="text" id="student-id" placeholder="e.g. CS202601" autocomplete="off">
+                        <small class="error-msg" id="id-error"></small>
+                    </div>
+
+                    <!-- Email Address -->
+                    <div class="form-group">
+                        <label for="student-email">Email Address <span class="required">*</span></label>
+                        <input type="email" id="student-email" placeholder="e.g. alex.j@example.com" autocomplete="off">
+                        <small class="error-msg" id="email-error"></small>
+                    </div>
+
+                    <!-- Phone Number -->
+                    <div class="form-group">
+                        <label for="student-phone">Phone Number <span class="required">*</span></label>
+                        <input type="tel" id="student-phone" placeholder="e.g. 9876543210 (10 digits)" maxlength="10" autocomplete="off">
+                        <small class="error-msg" id="phone-error"></small>
+                    </div>
+
+                    <!-- Course Dropdown -->
+                    <div class="form-group">
+                        <label for="student-course">Course / Department <span class="required">*</span></label>
+                        <select id="student-course">
+                            <option value="">-- Select Course --</option>
+                            <option value="Computer Science & Engineering">Computer Science & Engineering</option>
+                            <option value="Information Technology">Information Technology</option>
+                            <option value="Electronics & Communication">Electronics & Communication</option>
+                            <option value="Mechanical Engineering">Mechanical Engineering</option>
+                            <option value="Civil Engineering">Civil Engineering</option>
+                            <option value="Business Administration">Business Administration</option>
+                        </select>
+                        <small class="error-msg" id="course-error"></small>
+                    </div>
+
+                    <!-- Year of Study Dropdown -->
+                    <div class="form-group">
+                        <label for="student-year">Year of Study <span class="required">*</span></label>
+                        <select id="student-year">
+                            <option value="">-- Select Year --</option>
+                            <option value="1st Year">1st Year</option>
+                            <option value="2nd Year">2nd Year</option>
+                            <option value="3rd Year">3rd Year</option>
+                            <option value="4th Year">4th Year</option>
+                        </select>
+                        <small class="error-msg" id="year-error"></small>
+                    </div>
+                </div>
+
+                <!-- Form Buttons -->
+                <div class="form-actions">
+                    <button type="submit" id="submit-btn" class="btn btn-primary">
+                        <span id="submit-btn-text">Submit Registration</span>
+                    </button>
+                    <button type="button" id="cancel-btn" class="btn btn-outline" style="display: none;">
+                        Cancel Edit
+                    </button>
+                    <button type="reset" id="reset-btn" class="btn btn-ghost">
+                        Clear Fields
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Student List / Table Section -->
+        <section id="records-section" class="card table-card">
+            <div class="table-header">
+                <div class="table-title">
+                    <h2>Registered Students</h2>
+                    <p class="card-subtitle">Search, view, update, and manage student records.</p>
+                </div>
+
+                <!-- Search and Filter Bar -->
+                <div class="search-box">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" id="search-input" placeholder="Search by Student Name or ID...">
+                    <button id="clear-search-btn" class="clear-search-btn" title="Clear search" type="button" style="display: none;">✕</button>
+                </div>
+            </div>
+
+            <!-- Table Container (Horizontal Scroll on Mobile) -->
+            <div class="table-responsive">
+                <table class="students-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Student ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Course</th>
+                            <th>Year</th>
+                            <th class="text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="students-table-body">
+                        <!-- Student rows dynamically injected via JavaScript -->
+                    </tbody>
+                </table>
+
+                <!-- Empty State Message -->
+                <div id="empty-state" class="empty-state">
+                    <div class="empty-icon">📂</div>
+                    <h3 id="empty-title">No Students Registered Yet</h3>
+                    <p id="empty-description">Use the registration form above or click "Load Demo Data" to get started.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <p>© 2026 Student Registration System | Built for College Hackathon</p>
+            <p class="footer-subtext">Pure HTML5 • CSS3 • Vanilla JavaScript</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript File -->
+    <script src="script.js"></script>
+</body>
+</html>
