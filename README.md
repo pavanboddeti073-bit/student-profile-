@@ -39,11 +39,11 @@ A simple, attractive, and responsive **Student Registration System** built for c
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/boddetipavanmanikanta-glitch/pavan-manikanta.git
+   git clone https://github.com/pavanboddeti073-bit/student-profile-.git
    ```
 2. Open the project folder:
    ```bash
-   cd pavan-manikanta
+   cd student-profile-
    ```
 3. Open `index.html` in your favorite web browser (e.g., Chrome, Edge, Safari, Firefox).
 
