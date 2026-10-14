@@ -30,7 +30,7 @@ A clean, modern, and beginner-friendly **Student Marks Calculator** designed for
 ## 📂 Project Structure
 
 ```text
-student-calculator/
+student-profile/
 ├── index.html     # Semantic HTML5 layout and report card markup
 ├── style.css      # Modern light-theme styling, rounded cards & responsive CSS
 ├── script.js      # Form validation, calculation logic & DOM manipulation
@@ -43,11 +43,11 @@ student-calculator/
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/pavanboddeti073-bit/student-calculator.git
+   git clone https://github.com/pavanboddeti073-bit/student-profile-.git
    ```
 2. Open the project folder:
    ```bash
-   cd student-calculator
+   cd "student profile"
    ```
 3. Open `index.html` in any web browser (Chrome, Edge, Firefox, Safari).
 
